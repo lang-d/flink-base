@@ -16,36 +16,6 @@ import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer;
 
 public class ConnectorUtil {
 
-    public static FlinkKafkaConsumer<JsonDetailsPojo> createJsonDetailsConsumer(String propertiesPath, String topic, String consumerGroup) throws Exception {
-        KafkaConnector<JsonDetailsPojo> conn = new KafkaConnector<JsonDetailsPojo>();
-        conn.loadProperties(propertiesPath);
-        conn.setTopic(topic);
-        conn.setConsumerGroup(consumerGroup);
-        conn.setDeserialization(new FlinkKafkaJsonDeserializationSchema());
-
-        return conn.buildConsumer();
-    }
-
-    public static FlinkKafkaConsumer<JsonDetailsPojo> createSafeJsonDetailsConsumer(String propertiesPath, String topic, String consumerGroup) throws Exception {
-        KafkaConnector<JsonDetailsPojo> conn = new KafkaConnector<JsonDetailsPojo>();
-        conn.loadProperties(propertiesPath);
-        conn.setTopic(topic);
-        conn.setConsumerGroup(consumerGroup);
-        conn.setDeserialization(new FlinkSafeKafkaJsonDeserializationSchema());
-
-        return conn.buildConsumer();
-    }
-
-    public static FlinkKafkaConsumer<TaskMessagePojo> createTaskJsonConsumer(String propertiesPath, String topic, String consumerGroup) throws Exception {
-        KafkaConnector<TaskMessagePojo> conn = new KafkaConnector<TaskMessagePojo>();
-        conn.loadProperties(propertiesPath);
-        conn.setTopic(topic);
-        conn.setConsumerGroup(consumerGroup);
-        conn.setDeserialization(new FlinkKafkaTaskJsonDeserializationSchema());
-
-        return conn.buildConsumer();
-    }
-
     public static FlinkKafkaConsumer<String> createStringConsumer(String propertiesPath, String topic, String consumerGroup) throws Exception {
         KafkaConnector<String> conn = new KafkaConnector<String>();
         conn.loadProperties(propertiesPath);
@@ -53,36 +23,6 @@ public class ConnectorUtil {
         conn.setConsumerGroup(consumerGroup);
 
         return conn.buildSimpleStringConsumer();
-    }
-
-    public static KafkaSource<JsonDetailsPojo> createJsonDetailsSource(String propertiesPath, String topic, String consumerGroup) throws Exception {
-        KafkaConnector<JsonDetailsPojo> conn = new KafkaConnector<JsonDetailsPojo>();
-        conn.loadProperties(propertiesPath);
-        conn.setTopic(topic);
-        conn.setConsumerGroup(consumerGroup);
-        conn.setDeserialization(new FlinkKafkaJsonDeserializationSchema());
-
-        return conn.buildSource();
-    }
-
-    public static KafkaSource<JsonDetailsPojo> createSafeJsonDetailsSource(String propertiesPath, String topic, String consumerGroup) throws Exception {
-        KafkaConnector<JsonDetailsPojo> conn = new KafkaConnector<JsonDetailsPojo>();
-        conn.loadProperties(propertiesPath);
-        conn.setTopic(topic);
-        conn.setConsumerGroup(consumerGroup);
-        conn.setDeserialization(new FlinkSafeKafkaJsonDeserializationSchema());
-
-        return conn.buildSource();
-    }
-
-    public static KafkaSource<TaskMessagePojo> createTaskJsonSource(String propertiesPath, String topic, String consumerGroup) throws Exception {
-        KafkaConnector<TaskMessagePojo> conn = new KafkaConnector<TaskMessagePojo>();
-        conn.loadProperties(propertiesPath);
-        conn.setTopic(topic);
-        conn.setConsumerGroup(consumerGroup);
-        conn.setDeserialization(new FlinkKafkaTaskJsonDeserializationSchema());
-
-        return conn.buildSource();
     }
 
     public static KafkaSource<String> createStringSource(String propertiesPath, String topic, String consumerGroup) throws Exception {
