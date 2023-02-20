@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>flink.base</groupId>
+    <artifactId>flink-base-work</artifactId>
+    <packaging>jar</packaging>
+    <version>1.13.7</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <flink.version>1.13.3</flink.version>
+        <vvr.connector.version>1.13-vvr-4.0.15</vvr.connector.version>
+        <java.version>1.8</java.version>
+        <scala.binary.version>2.11</scala.binary.version>
+        <postgresql.version>42.2.16</postgresql.version>
+        <mysql.version>5.1.34</mysql.version>
+        <sfl4j.version>1.7.30</sfl4j.version>
+        <mysql.cdc.version>2.1.0</mysql.cdc.version>
+        <postgres.cdc.version>2.1.0</postgres.cdc.version>
+        <changelog.version>2.1.0</changelog.version>
+        <common.utils.version>1.1.1</common.utils.version>
+        <druid.version>1.2.7</druid.version>
+        <postgresql.version>42.2.18.4</postgresql.version>
+        <redis.flink.version>1.0.2</redis.flink.version>
+        <junit.version>4.12</junit.version>
+        <commons.pool.version>2.0</commons.pool.version>
+        <jedis.version>2.9.0</jedis.version>
+
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>oss.sonatype.org-snapshot</id>
+            <name>OSS Sonatype Snapshot Repository</name>
+            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>apache.snapshots</id>
+            <name>Apache Development Snapshot Repository</name>
+            <url>https://repository.apache.org/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.twitter</groupId>
+            <artifactId>chill-protobuf</artifactId>
+            <version>0.7.6</version>
+            <!-- exclusions for dependency conversion -->
+            <exclusions>
+                <exclusion>
+                    <groupId>com.esotericsoftware.kryo</groupId>
+                    <artifactId>kryo</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- We need protobuf for chill-protobuf -->
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>3.7.0</version>
+        </dependency>
+
+        <!--   vvr connector     -->
+
+        <dependency>
+            <groupId>com.alibaba.ververica</groupId>
+            <artifactId>ververica-connector-odps</artifactId>
+            <version>${vvr.connector.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.ververica</groupId>
+            <artifactId>ververica-connector-continuous-odps</artifactId>
+            <version>${vvr.connector.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.ververica</groupId>
+            <artifactId>ververica-connector-kafka</artifactId>
+            <version>${vvr.connector.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.ververica</groupId>
+            <artifactId>ververica-connector-hologres</artifactId>
+            <version>${vvr.connector.version}</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.alibaba.ververica</groupId>-->
+<!--            <artifactId>ververica-connector-jdbc</artifactId>-->
+<!--            <version>${vvr.connector.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>com.alibaba.ververica</groupId>-->
+<!--            <artifactId>ververica-connector-mysql</artifactId>-->
+<!--            <version>${vvr.connector.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>com.alibaba.ververica</groupId>-->
+<!--            <artifactId>ververica-connector-postgres</artifactId>-->
+<!--            <version>${vvr.connector.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>com.alibaba.ververica</groupId>-->
+<!--            <artifactId>ververica-connector-elasticsearch6</artifactId>-->
+<!--            <version>${vvr.connector.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>com.alibaba.ververica</groupId>-->
+<!--            <artifactId>ververica-connector-redis</artifactId>-->
+<!--            <version>${vvr.connector.version}</version>-->
+<!--        </dependency>-->
+
+        <!-- flink connector-->
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-base</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-avro</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-elasticsearch6_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>flink.base.redis</groupId>
+            <artifactId>flink-connector-redis_2.11</artifactId>
+            <version>${redis.flink.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-jdbc_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.ververica</groupId>
+            <artifactId>flink-connector-mysql-cdc</artifactId>
+            <version>${mysql.cdc.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ververica</groupId>
+            <!-- add the dependency matching your database -->
+            <artifactId>flink-connector-postgres-cdc</artifactId>
+            <version>${postgres.cdc.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ververica</groupId>
+            <artifactId>flink-format-changelog-json</artifactId>
+            <version>${changelog.version}</version>
+        </dependency>
+
+        <!-- database -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.hologres</groupId>
+            <artifactId>postgresql-holo</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
+        </dependency>
+
+        <!-- Flink dependencies -->
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-runtime-web_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-json -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-json</artifactId>
+            <version>${flink.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-table-common</artifactId>
+            <version>${flink.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-table-api-java-bridge_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-table-planner-blink_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-streaming-scala_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-java</artifactId>
+            <version>${flink.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-clients_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-table-planner_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- 通用工具等 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${sfl4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>${commons.pool.version}</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <!--包含文件夹以及子文件夹下所有资源-->
+                    <include>**/*.*</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <plugins>
+
+            <!-- Java Compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+
+                                <!-- The service transformer is needed to merge META-INF/services files -->
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ApacheNoticeResourceTransformer">
+                                    <projectName>Apache Flink</projectName>
+                                    <encoding>UTF-8</encoding>
+                                </transformer>
+
+                            </transformers>
+                            <!--                            <minimizeJar>true</minimizeJar>-->
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+</project>
