@@ -1,13 +1,11 @@
 package base.flink.util;
 
-import base.flink.connectors.kafka.*;
-import base.flink.pojo.JsonDetailsPojo;
-import cn.newrank.flink.connectors.kafka.*;
+import base.flink.connectors.kafka.FlinkKafkaRandomPartitioner;
+import base.flink.connectors.kafka.KafkaConnector;
 import base.flink.connectors.nedis.RedisConnector;
 import base.flink.connectors.nedis.SimpleRedisMapper;
 import cn.newrank.flink.connectors.redis.RedisSink;
 import cn.newrank.flink.connectors.redis.common.mapper.RedisCommand;
-import base.flink.pojo.TaskMessagePojo;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.connector.kafka.source.KafkaSource;

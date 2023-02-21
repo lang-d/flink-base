@@ -23,7 +23,7 @@ import java.util.HashMap;
  */
 public class HologresFormat implements Serializable {
 
-    private Logger logger = LoggerFactory.getLogger(HologresFormat.class);
+    private Logger LOG = LoggerFactory.getLogger(HologresFormat.class);
 
     private static final long serialVersionUID = 0L;
 
@@ -91,7 +91,7 @@ public class HologresFormat implements Serializable {
         for (String s : fieldList) {
             DataType type = dataTypeMap.get(s);
             if (type == null) {
-                logger.error(String.format("field:%s not set dataType", s));
+                LOG.error(String.format("field:%s not set dataType", s));
                 System.exit(1);
             }
         }
